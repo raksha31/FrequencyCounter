@@ -1,0 +1,9 @@
+package com.sellics.research.service;
+
+import com.sellics.research.dto.KeywordScoreRequestDto;
+import com.sellics.research.dto.KeywordScoreResponseDto;
+
+public interface KeywordFrequencyService {
+	
+	public KeywordScoreResponseDto calculateKeywordScore(KeywordScoreRequestDto keywordScoreRequestDto);
+}

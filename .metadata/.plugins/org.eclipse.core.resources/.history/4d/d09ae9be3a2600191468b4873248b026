@@ -1,0 +1,69 @@
+package com.sellics.research.service;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.boot.configurationprocessor.json.JSONArray;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.sellics.research.dto.KeywordScoreResponseDto;
+
+@Service
+public class KeywordFrequencyServiceImpl implements KeywordFrequencyService {
+
+	@Override
+	public KeywordScoreResponseDto calculateKeywordScore(String keyword) throws JSONException {
+		char[] keywordArray = keyword.toCharArray();
+		String searchKey = "";
+		boolean foundyet=false;
+		Integer rank=0;
+		Integer score=0;
+		KeywordScoreResponseDto response=null;
+		for(int i=0; i<keywordArray.length; i++) {
+			char eachKey = keywordArray[i];
+			searchKey = searchKey+Character.toString(eachKey);
+			String uri = "http://completion.amazon.com/search/complete?search-alias=aps&client=amazon-search-ui&mkt=1&q="+searchKey;
+			RestTemplate restTemplate = new RestTemplate();		 
+			String result = restTemplate.getForObject(uri, String.class);
+
+			JSONArray arrJson = new JSONArray(result);
+			JSONArray suggestions = arrJson.getJSONArray(1);
+
+			String[] arr = new String[suggestions.length()];
+			for(int j = 0; j < suggestions.length(); j++) {
+				arr[j] = suggestions.getString(j);
+			}
+			List<String> elements = Arrays.asList(arr);
+
+			score = score + calculateScore(elements, keyword,rank);
+			if(foundyet) {
+			response = new KeywordScoreResponseDto(keyword,rank);
+			break;
+			} /*else {
+				continue;
+			}*/
+
+		}
+		return response;
+	}
+	private Integer calculateScore(List<String> elements, String keyword, Integer rank) {
+		int pos=0;
+		Optional<String> presentInList=elements.stream().
+				filter(i -> i.equals(keyword)).findFirst();
+
+		if(presentInList.isPresent()) {
+			pos = elements.indexOf(keyword)+1; //Done as array indexing starts at 0
+			foundyet=true;
+		}else
+			pos = -1; 
+		if(pos!=-1)
+			return rank+=pos;
+		else
+			return rank+=10;
+	}
+}
+
+

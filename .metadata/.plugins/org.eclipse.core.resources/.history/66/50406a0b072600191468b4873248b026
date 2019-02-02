@@ -1,0 +1,11 @@
+package com.sellics.research.dto;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class KeywordFrequencyDto {
+	private String keyword;
+	private Integer score;
+}

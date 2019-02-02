@@ -1,0 +1,35 @@
+package com.sellics.research.service;
+
+import org.springframework.boot.configurationprocessor.json.JSONArray;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.sellics.research.dto.KeywordScoreResponseDto;
+
+@Service
+public class KeywordFrequencyServiceImpl implements KeywordFrequencyService {
+	
+	
+	@Override
+	public KeywordScoreResponseDto calculateKeywordScore(String keyword) throws JSONException {
+		KeywordScoreResponseDto response=null;
+		String uri = "http://completion.amazon.com/search/complete?search-alias=aps&client=amazon-search-ui&mkt=1&q="+keyword;
+		 RestTemplate restTemplate = new RestTemplate();
+		    String result = restTemplate.getForObject(uri, String.class);
+		   JSONArray arrJson = new JSONArray(result);
+		    JSONObject suggestions = arrJson.getJSONObject(1);
+		 
+		    /* JSONArray suggestionArray = suggestions.getJSONArray();
+		    String[] arr = new String[obj.length()];
+		    for(int i = 0; i < obj.length(); i++) {
+		        arr[i] = obj.optString(i);
+		    }*/
+		    
+		    
+		  System.out.println(suggestions.toString());   
+		return null;
+	}
+
+}

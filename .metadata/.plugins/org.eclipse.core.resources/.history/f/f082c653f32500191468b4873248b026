@@ -1,0 +1,28 @@
+package com.sellics.research;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Optional;
+
+public class Subodh {
+
+	public static ArrayList<String> elements=(ArrayList<String>)
+			Arrays.asList("Subodh","Raksha","Anal","Neha");
+
+	public static void main(String[] args) {
+	
+		Integer pos=findElementAndPosition("Anal");
+
+	}
+
+	public static Integer findElementAndPosition(final String ele)
+	{		
+		Optional<String> presentInList=elements.stream().
+				 filter(i -> i.equals(ele)).findFirst();
+		
+		if(presentInList.isPresent())
+			return elements.indexOf(ele);
+		else
+			return -1;
+	}
+}

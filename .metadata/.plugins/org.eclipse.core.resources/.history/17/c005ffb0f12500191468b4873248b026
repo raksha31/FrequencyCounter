@@ -1,0 +1,11 @@
+package com.sellics.research;
+
+public class Subodh {
+
+	public static ArrayList<String> arr=new ArrayList("Subodh","Raksha","Anal","Neha");
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

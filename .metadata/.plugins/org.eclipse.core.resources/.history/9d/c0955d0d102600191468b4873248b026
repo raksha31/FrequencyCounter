@@ -1,0 +1,5 @@
+package com.sellics.research.controller;
+
+public class KeywordFrequencyController {
+
+}

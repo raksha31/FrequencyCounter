@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.sellics.Research&apos; to &apos;com.sellics.research&apos;&#x0A;- Original project: &apos;Research&apos;&#x0A;- Original element: &apos;Research/src/main/java/com.sellics.Research&apos;&#x0A;- Renamed element: &apos;Research/src/main/java/com.sellics.research&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.sellics.Research&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;com.sellics.Research" name="com.sellics.research" qualified="false" references="true" stamp="1548948810672" textual="false" version="1.0"/>
+</session>

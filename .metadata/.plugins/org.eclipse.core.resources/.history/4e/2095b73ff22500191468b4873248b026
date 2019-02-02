@@ -1,0 +1,23 @@
+package com.sellics.research;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Optional;
+
+public class Subodh {
+
+	public static ArrayList<String> arr=(ArrayList<String>)
+			Arrays.asList("Subodh","Raksha","Anal","Neha");
+
+	public static void main(String[] args) {
+	
+		Optional<Integer> pos=findElementAndPosition("Anal");
+
+	}
+
+	public static Optional<Integer> findElementAndPosition(String element)
+	{
+		
+		return null;
+	}
+}

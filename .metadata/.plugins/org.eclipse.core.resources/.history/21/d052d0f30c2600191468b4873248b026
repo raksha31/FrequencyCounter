@@ -1,0 +1,5 @@
+package com.sellics.research.service;
+
+public interface KeywordFrequencyService {
+
+}

@@ -1,0 +1,12 @@
+package com.sellics.research.service;
+
+import org.springframework.stereotype.Service;
+
+import com.sellics.research.dto.KeywordScoreRequestDto;
+import com.sellics.research.dto.KeywordScoreResponseDto;
+
+@Service
+public interface KeywordFrequencyService {
+	
+	public KeywordScoreResponseDto calculateKeywordScore(String keyword);
+}

@@ -1,0 +1,51 @@
+package com.sellics.research.service;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.boot.configurationprocessor.json.JSONArray;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.sellics.research.dto.KeywordScoreResponseDto;
+
+@Service
+public class KeywordFrequencyServiceImpl implements KeywordFrequencyService {
+
+
+	@Override
+	public KeywordScoreResponseDto calculateKeywordScore(String keyword) throws JSONException {
+		KeywordScoreResponseDto response=null;
+		String uri = "http://completion.amazon.com/search/complete?search-alias=aps&client=amazon-search-ui&mkt=1&q="+keyword;
+		RestTemplate restTemplate = new RestTemplate();		 
+		String result = restTemplate.getForObject(uri, String.class);
+
+		JSONArray arrJson = new JSONArray(result);
+		JSONArray suggestions = arrJson.getJSONArray(1);
+
+		String[] arr = new String[suggestions.length()];
+		for(int i = 0; i < suggestions.length(); i++) {
+			arr[i] = suggestions.getString(i);
+		}
+		List<String> elements = Arrays.asList(arr);
+		
+		Integer score = calculateScore(elements, keyword);
+
+		System.out.println(arr.toString());   
+		return null;
+	}
+	private Integer calculateScore(List<String> elements, String keyword) {
+		Optional<String> presentInList=elements.stream().
+				 filter(i -> i.equals(keyword)).findFirst();
+		
+		if(presentInList.isPresent()) {
+				return elements.indexOf(keyword)+1; //Done as array indexing starts at 0
+		}else
+			return -1; 
+	}
+	}
+
+}

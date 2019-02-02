@@ -1,0 +1,8 @@
+package com.sellics.research.dto;
+
+import lombok.Data;
+
+@Data
+public class KeywordScoreRequestDto {
+	private String keyword;
+}

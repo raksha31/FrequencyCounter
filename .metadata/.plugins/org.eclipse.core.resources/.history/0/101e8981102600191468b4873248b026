@@ -1,0 +1,13 @@
+package com.sellics.research;
+
+/**
+ * Hello world!
+ *
+ */
+public class KeywordScoreApplication 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+    }
+}

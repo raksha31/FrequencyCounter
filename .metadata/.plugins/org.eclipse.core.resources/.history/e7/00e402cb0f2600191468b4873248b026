@@ -1,0 +1,14 @@
+package com.sellics.research.service;
+
+import com.sellics.research.dto.KeywordScoreRequestDto;
+import com.sellics.research.dto.KeywordScoreResponseDto;
+
+public class KeywordFrequencyServiceImpl implements KeywordFrequencyService {
+
+	@Override
+	public KeywordScoreResponseDto calculateKeywordScore(KeywordScoreRequestDto keywordScoreRequestDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
